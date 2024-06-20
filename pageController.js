@@ -1,33 +1,31 @@
-const pageScraper = require("./pageScraper")
-const fs = require("fs")
+import { scraperObject } from "./pageScraper.js"
+import { writeFile } from "fs"
 
-async function scrapeAll(browserInstance) {
+const scraperController = async (browserInstance) => {
   let browser
+  let url = "http://books.toscrape.com"
 
   try {
-    browser = await browserInstance
     let scrapedData = {}
 
+    browser = await browserInstance
+
     // Call the scraper for different set of books to be scraped
-    scrapedData["Travel"] = await pageScraper.scraper(browser, "Travel")
-    scrapedData["HistoricalFiction"] = await pageScraper.scraper(
-      browser,
-      "Historical Fiction"
-    )
-    scrapedData["Mystery"] = await pageScraper.scraper(browser, "Mystery")
-    fs.writeFile(
-      "data.json",
-      JSON.stringify(scrapedData),
-      "utf8",
-      function (err) {
-        if (err) {
-          return console.log(err)
-        }
-        console.log(
-          "The data has been scraped and saved successfully! View it at './data.json'"
-        )
+    scrapedData["Travel"] = await scraperObject.scraper(browser, "Travel")
+    // scrapedData["HistoricalFiction"] = await scraperObject.scraper(
+    //   browser,
+    //   "Historical Fiction"
+    // )
+    // scrapedData["Mystery"] = await scraperObject.scraper(browser, "Mystery")
+
+    writeFile("data.json", JSON.stringify(scrapedData), "utf8", function (err) {
+      if (err) {
+        return console.log(err)
       }
-    )
+      console.log(
+        "The data has been scraped and saved successfully! View it at './data.json'"
+      )
+    })
 
     console.log(scrapedData)
   } catch (err) {
@@ -35,4 +33,4 @@ async function scrapeAll(browserInstance) {
   }
 }
 
-module.exports = (browserInstance) => scrapeAll(browserInstance)
+export default (browserInstance) => scraperController(browserInstance)

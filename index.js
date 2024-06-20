@@ -1,8 +1,10 @@
-const browserObject = require("./browser")
-const scraperController = require("./pageController")
+import startBrowser from "./browser.js"
+import scraperController from "./pageController.js"
 
 //Start the browser and create a browser instance
-let browserInstance = browserObject.startBrowser()
+let browserInstance = startBrowser()
 
 // Pass the browser instance to the scraper controller
 scraperController(browserInstance)
+
+// console.log("scraperController disabled")

@@ -1,12 +1,14 @@
-const puppeteer = require("puppeteer")
+import puppeteer from "puppeteer"
 
-async function startBrowser() {
+const startBrowser = async () => {
   let browser
   try {
     console.log("Opening the browser......")
     browser = await puppeteer.launch({
-      headless: true,
-      args: ["--disable-setuid-sandbox"],
+      headless: false,
+      defaultViewport: null,
+      args: ["--start-maximized"],
+      // args: ["--disable-setuid-sandbox"],
       ignoreHTTPSErrors: true,
     })
   } catch (err) {
@@ -15,6 +17,4 @@ async function startBrowser() {
   return browser
 }
 
-module.exports = {
-  startBrowser,
-}
+export default startBrowser
