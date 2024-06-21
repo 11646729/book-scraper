@@ -8,7 +8,6 @@ const startBrowser = async () => {
       headless: false,
       defaultViewport: null,
       args: ["--start-maximized"],
-      // args: ["--disable-setuid-sandbox"],
       ignoreHTTPSErrors: true,
     })
   } catch (err) {
