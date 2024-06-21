@@ -127,7 +127,7 @@ export const scraperObject = {
     }
 
     let data = await scrapeCurrentPage()
-    console.log(data)
+    // console.log(data)
     return data
   },
 }
