@@ -5,7 +5,7 @@ const startBrowser = async () => {
   try {
     console.log("Opening the browser......")
     browser = await puppeteer.launch({
-      headless: true,
+      headless: false,
       defaultViewport: null,
       args: ["--start-maximized"],
       ignoreHTTPSErrors: true,
