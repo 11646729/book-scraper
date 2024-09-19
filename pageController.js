@@ -10,19 +10,13 @@ const scraperController = async (browserInstance) => {
 
     browser = await browserInstance
 
-    // Duplicate code from pageScraper
-    // let page = await browser.newPage()
-    // console.log(`Navigating to ${this.url}...`)
-    // // Navigate to the selected page
-    // await page.goto(this.url)
-
     // Call the scraper for different set of books to be scraped
-    scrapedData["Travel"] = await scraperObject.scraper(browser, "Travel")
-    // scrapedData["HistoricalFiction"] = await scraperObject.scraper(
-    //   browser,
-    //   "Historical Fiction"
-    // )
-    // scrapedData["Mystery"] = await scraperObject.scraper(browser, "Mystery")
+    // scrapedData["Travel"] = await scraperObject.scraper(browser, "Travel")
+    scrapedData["HistoricalFiction"] = await scraperObject.scraper(
+      browser,
+      "Historical Fiction"
+    )
+    scrapedData["Mystery"] = await scraperObject.scraper(browser, "Mystery")
 
     writeFile("data.json", JSON.stringify(scrapedData), "utf8", function (err) {
       if (err) {
